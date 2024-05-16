@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome, {{ account.name }}!</p>
+
+<p style="background-color: rgb(62, 127, 248);color: antiquewhite;">You account balance is  {{account.balance}}</p>
+<p style="background-color: rgb(62, 127, 248);color: antiquewhite;">You username is  {{account.username}}</p>
+<p style="background-color: rgb(62, 127, 248);color: antiquewhite;">You email is  {{account.email}}</p>
+
+
+{% endblock %}

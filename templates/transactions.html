@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+</style>
+
+
+<h3>Transactions</h3>
+
+<table>
+    <tr>
+        <th>From Account</th>
+        <th>To Account</th>
+        <th>Amount</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>timestamp</th>
+        <th>Update Priority</th>
+
+
+    </tr>
+    {% for row in results %}
+    <tr>
+        <td>{{ row.from_account }}</td>
+        <td>{{ row.to_account }}</td>
+        <td>{{ row.amount }}</td>
+        <td>{{ row.priority }}</td>
+        <td>{{ row.txn_status }}</td>
+        <td>{{ row.txn_description }}</td>
+        <td>{{ row.timestamp }}</td>
+        <form action="/manage_priority_tasks" method="post">
+            {% if row.priority == "high" %}
+            <input type="hidden" name="priority" value="default">
+            <input type="hidden" name="txn_id" value="{{row.id}}">
+            <!-- <td><button type="submit" disabled>Increase Priority</button></td> -->
+            <td><button type="submit">Decrease Priority</button></td>
+            {% else %}
+            <input type="hidden" name="priority" value="high">
+            <input type="hidden" name="txn_id" value="{{row.id}}">
+            <td><button type="submit">Increase Priority</button></td>
+            <!-- <td><button type="submit" disabled>Decrease Priority</button></td> -->
+            {% endif %}
+        </form>
+    </tr>
+    {% endfor %}
+</table>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% endblock %}

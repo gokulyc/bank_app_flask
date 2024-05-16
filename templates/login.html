@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="POST" action="/login">
+    <p>
+        <label for="username" class="form-label-sm">Username:</label><br>
+        <input class="form-control-sm" type="text" name="username" size="20" id="username">
+    </p>
+    <p>
+        <label for="password" class="form-label-sm">Password:</label>
+        <br>
+        <input class="form-control-sm" type="password" name="password" size="20">
+    </p>
+    <p><input class="btn btn-primary" type="submit" value="Login"></p>
+    {% if message == 'AnonymousUser' %}
+    <div class="alert alert-danger" role="alert">
+        Need to login first !!!
+    </div>
+    {% endif %}
+
+    {% if message == 'TokenExpired' %}
+    <div class="alert alert-danger" role="alert">
+        Token Expired, Need to login again !!!
+    </div>
+    {% endif %}
+</form>
+{% endblock %}

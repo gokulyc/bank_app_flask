@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.id.label(class_="form-label-sm") }}<br>
+        {{ form.id(class_="form-control-sm",size=20, disabled=True) }}
+    </p>
+    <p>
+        {{ form.username.label(class_="form-label-sm") }}<br>
+        {{ form.username(class_="form-control-sm",size=20) }}
+    </p>
+    <p>
+        {{ form.password.label(class_="form-label-sm") }}<br>
+        {{ form.password(class_="form-control-sm",size=20) }}
+    </p>
+    <p>
+        {{ form.name.label(class_="form-label-sm") }}<br>
+        {{ form.name(class_="form-control-sm",size=20) }}
+    </p>
+    <p>
+        {{ form.email.label(class_="form-label-sm") }}<br>
+        {{ form.email(class_="form-control-sm",size=20) }}
+    </p>
+    <p>
+        {{ form.balance.label(class_="form-label-sm") }}<br>
+        {{ form.balance(class_="form-control-sm") }}
+    </p>
+
+    <p><input class="btn btn-primary" type="submit" value="Register"></p>
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Fund Transfer</h1>
+<form method="POST" action="/transfer">
+    <label for="from">From Account ID:</label><br>
+    <input type="text" id="from" name="from"><br>
+    <label for="to">To Account ID:</label><br>
+    <input type="text" id="to" name="to"><br>
+    <label for="amount">Amount:</label><br>
+    <input type="text" id="amount" name="amount"><br>
+    <input type="submit" value="Transfer">
+</form>
+{% endblock %}
