@@ -247,4 +247,4 @@ if __name__ == "__main__":
             add_txns_sample_data()
         except Exception as e:
             print(e)
-    app.run()
+    app.run(host="0.0.0.0")
