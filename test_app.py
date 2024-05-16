@@ -1,7 +1,7 @@
 # from flask_sqlalchemy import SQLAlchemy
 from models import Account, Alerts, Transactions
 from werkzeug.security import generate_password_hash
-from flask import Response, session
+from flask import Response
 from werkzeug.http import parse_cookie
 from jwt import decode
 

@@ -26,7 +26,7 @@ def writeReport():
         data = resp.json()
         print(data)
         df = pd.DataFrame(data)
-        df.to_csv(f"reports\{dt_str}.csv", index=False)
+        df.to_csv(fr"reports\{dt_str}.csv", index=False)
     # filepath.write_text(f"{dt_str}")
 
 
@@ -88,9 +88,9 @@ def retrieve_jobs_to_schedule():
 
 if __name__ == "__main__":
     scheduler = BackgroundScheduler()
-    url = "sqlite:///apscheduler.sqlite"
+    url = "sqlite:///instance/apscheduler.sqlite"
     scheduler.add_jobstore("sqlalchemy", url=url)
-    scheduler.add_job(writeReport, "interval", minutes=5)
+    scheduler.add_job(writeReport, "interval", seconds=30)
     # scheduler.add_job(writeReport, "interval", seconds=20)
     scheduler.add_job(process_high_priority_transactions, "interval", seconds=5)
     # scheduler.add_job(
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     scheduler.add_job(process_low_priority_transactions, "interval", seconds=60)
     # scheduler.add_job(retrieve_jobs_to_schedule, trigger="interval", seconds=10)
 
-    print("To clear the alarms, delete the example.sqlite file.")
+    print("To clear the alarms, delete the apscheduler.sqlite file.")
     print("Press Ctrl+{0} to exit".format("Break" if os.name == "nt" else "C"))
     try:
         scheduler.start()

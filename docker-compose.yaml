@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  flask_app:
+      build:
+        context: .
+        dockerfile: Dockerfile.flask
+      ports:
+        - "5000:5000"
+      volumes:
+        - ./instance:/app/instance
+      network_mode: bridge
+  ap_scheduler:
+      build:
+        context: .
+        dockerfile: Dockerfile.apscheduler
+      volumes:
+        - ./instance:/app/instance
+        - ./reports:/app/reports
+      network_mode: bridge
