@@ -16,5 +16,6 @@ docker-compose.yaml
 **/venv
 **/reports
 **/.pytest_cache
-**/__pycache__
+**/__pycache__/**
 .env.prod
+**/db_data

@@ -8,3 +8,4 @@ pytest
 apscheduler
 pandas
 requests
+psycopg2-binary

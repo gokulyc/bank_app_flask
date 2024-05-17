@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, jsonify, flash
+from flask import render_template, redirect, url_for, request, jsonify, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import BadRequest
 from flask_jwt_extended import (
@@ -16,10 +16,10 @@ from decimal import Decimal
 from models import Account, Transactions, db, Alerts
 from forms import RegisterForm
 from sample_data import accounts, transactions_sample
-from flask_app_db_factory import get_prod_env_app
+from flask_app_db_factory import get_flask_env_app
 
 
-app = get_prod_env_app()
+app = get_flask_env_app()
 
 app.config[
     "JWT_SECRET_KEY"

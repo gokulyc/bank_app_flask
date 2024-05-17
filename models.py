@@ -18,7 +18,7 @@ class Account(db.Model):
     name = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(80))
+    password = db.Column(db.String(200))
     balance = db.Column(db.DECIMAL(15, 4), nullable=False)
 
     def to_dict(self, exclude_password=True):

@@ -293,4 +293,4 @@ cython_debug/
 .vscode/
 *.sqlite
 reports/*
-
+db_data/*

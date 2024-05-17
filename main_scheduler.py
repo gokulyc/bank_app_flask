@@ -8,9 +8,9 @@ import pandas as pd
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.job import Job
-from flask_app_db_factory import db, Transactions, Alerts, get_prod_env_app
+from flask_app_db_factory import db, Transactions, Alerts, get_flask_env_app
 
-app = get_prod_env_app()
+app = get_flask_env_app()
 db.init_app(app)
 
 BACKEND_FLASK_ROOT_URL = os.getenv("BACKEND_FLASK_ROOT_URL", "http://localhost:5000")
