@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, UTC
 import os
 
-# import pathlib
+import pathlib
 import requests
 import pandas as pd
 
@@ -13,6 +13,9 @@ from flask_app_db_factory import db, Transactions, Alerts, get_prod_env_app
 app = get_prod_env_app()
 db.init_app(app)
 
+BACKEND_FLASK_ROOT_URL = os.getenv("BACKEND_FLASK_ROOT_URL", "http://localhost:5000")
+
+
 def writeReport():
     dt = datetime.now(UTC)
     # scheduler.print_jobs()
@@ -20,13 +23,15 @@ def writeReport():
     print(dt)
     # filepath = pathlib.Path(f"./reports/{dt_str}.txt")
     resp = requests.get(
-        "http://localhost:5000/get_report", params={"month": dt.month, "year": dt.year}
+        f"{BACKEND_FLASK_ROOT_URL}/get_report",
+        params={"month": dt.month, "year": dt.year},
     )
     if resp.ok:
         data = resp.json()
         print(data)
         df = pd.DataFrame(data)
-        df.to_csv(fr"reports\{dt_str}.csv", index=False)
+        report_path = pathlib.Path("reports") / f"{dt_str}.csv"
+        df.to_csv(report_path, index=False)
     # filepath.write_text(f"{dt_str}")
 
 

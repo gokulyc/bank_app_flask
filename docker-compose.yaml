@@ -8,12 +8,14 @@ services:
         - "5000:5000"
       volumes:
         - ./instance:/app/instance
-      network_mode: bridge
+      # network_mode: bridge
   ap_scheduler:
       build:
         context: .
         dockerfile: Dockerfile.apscheduler
+      env_file:
+        - .env.prod
       volumes:
         - ./instance:/app/instance
         - ./reports:/app/reports
-      network_mode: bridge
+      # network_mode: bridge
